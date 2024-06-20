@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -48,12 +48,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'configrations.urls'
+ROOT_URLCONF = 'root.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -66,30 +66,30 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'configrations.wsgi.application'
+WSGI_APPLICATION = 'root.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db',
-
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgres',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '1234',
-#         'HOST': 'localhost',
-#         'PORT': 5432
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db',
+#
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '1234',
+        'HOST': 'localhost',
+        'PORT': 5433
+    }
+}
 
 
 # Password validation
